@@ -1,68 +1,73 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Chill Music Toggle
-  const musicBtn = document.getElementById('music-btn');
-  const bgMusic = document.getElementById('bg-music');
-  let isPlaying = false;
+  let currentPage = 1;
+  const totalPages = 16;
 
-  musicBtn.addEventListener('click', () => {
-    if (isPlaying) {
-      bgMusic.pause();
-      musicBtn.innerHTML = '🎵 Vibe Music: OFF';
+  const pages = document.querySelectorAll('.page-content');
+  const indicator = document.getElementById('page-indicator');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+
+  let typeInterval = null;
+
+  function showPage(pageNo) {
+    // Hide all pages
+    pages.forEach(p => p.classList.remove('active'));
+
+    // Activate selected page
+    const activePageEl = document.querySelector(`.page-content[data-page="${pageNo}"]`);
+    activePageEl.classList.add('active');
+
+    // Update Counter
+    indicator.innerText = `Page ${pageNo} / ${totalPages}`;
+
+    // Update Buttons State
+    prevBtn.disabled = (pageNo === 1);
+    nextBtn.disabled = (pageNo === totalPages);
+
+    if (pageNo === totalPages) {
+      nextBtn.innerText = "🎉 Happy Birthday!";
     } else {
-      bgMusic.play().catch(() => {
-        alert('Page-e ektuhani click kore abar button press koron!');
-      });
-      musicBtn.innerHTML = '🎶 Vibe Music: ON';
+      nextBtn.innerText = "Next Page →";
     }
-    isPlaying = !isPlaying;
-  });
 
-  // 2. Lightbox Fullscreen Preview
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-  const closeBtn = document.querySelector('.close-lightbox');
+    // Trigger Cursive Typewriter Animation
+    const typewriterEl = activePageEl.querySelector('.typewriter-cursive');
+    if (typewriterEl) {
+      runCursiveTypewriter(typewriterEl);
+    }
+  }
 
-  document.querySelectorAll('.interactive-frame').forEach(item => {
-    item.addEventListener('click', () => {
-      const src = item.getAttribute('data-src') || item.querySelector('img').src;
-      lightboxImg.src = src;
-      lightbox.style.display = 'flex';
-    });
-  });
+  function runCursiveTypewriter(element) {
+    if (typeInterval) clearInterval(typeInterval);
 
-  closeBtn.addEventListener('click', () => {
-    lightbox.style.display = 'none';
-  });
+    const fullText = element.getAttribute('data-text');
+    element.innerText = "";
+    let i = 0;
 
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) {
-      lightbox.style.display = 'none';
+    typeInterval = setInterval(() => {
+      if (i < fullText.length) {
+        element.innerText += fullText.charAt(i);
+        i++;
+      } else {
+        clearInterval(typeInterval);
+      }
+    }, 25); // Smooth Typewriter speed
+  }
+
+  nextBtn.addEventListener('click', () => {
+    if (currentPage < totalPages) {
+      currentPage++;
+      showPage(currentPage);
     }
   });
 
-  // 3. Interactive Click Sparkle Effect
-  document.addEventListener('click', (e) => {
-    if (e.target.closest('#lightbox') || e.target.closest('#music-btn')) return;
-
-    const sparkle = document.createElement('span');
-    sparkle.innerText = ['✨', '⭐', '💫', '🌿'][Math.floor(Math.random() * 4)];
-    sparkle.style.position = 'fixed';
-    sparkle.style.left = e.clientX + 'px';
-    sparkle.style.top = e.clientY + 'px';
-    sparkle.style.fontSize = '18px';
-    sparkle.style.pointerEvents = 'none';
-    sparkle.style.transition = 'all 0.8s ease-out';
-    sparkle.style.zIndex = '999';
-
-    document.body.appendChild(sparkle);
-
-    setTimeout(() => {
-      sparkle.style.transform = 'translateY(-35px) scale(1.3) rotate(20deg)';
-      sparkle.style.opacity = '0';
-    }, 40);
-
-    setTimeout(() => {
-      sparkle.remove();
-    }, 800);
+  prevBtn.addEventListener('click', () => {
+    if (currentPage > 1) {
+      currentPage--;
+      showPage(currentPage);
+    }
   });
+
+  // Initialize Page 1
+  showPage(1);
 });
