@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const prevBtn = document.getElementById('prev-btn');
   const nextBtn = document.getElementById('next-btn');
 
-  let typeInterval = null;
+  let typeTimeout = null;
 
   function showPage(pageNo) {
     // Hide all pages
@@ -38,20 +38,21 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function runCursiveTypewriter(element) {
-    if (typeInterval) clearInterval(typeInterval);
+    if (typeTimeout) clearTimeout(typeTimeout);
 
-    const fullText = element.getAttribute('data-text');
+    const fullText = element.getAttribute('data-text') || "";
     element.innerText = "";
     let i = 0;
 
-    typeInterval = setInterval(() => {
+    function typeChar() {
       if (i < fullText.length) {
         element.innerText += fullText.charAt(i);
         i++;
-      } else {
-        clearInterval(typeInterval);
+        typeTimeout = setTimeout(typeChar, 25); // Smooth Typewriter speed
       }
-    }, 25); // Smooth Typewriter speed
+    }
+
+    typeChar();
   }
 
   nextBtn.addEventListener('click', () => {
