@@ -3,68 +3,103 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aesthetic Collage</title>
+  <title>Happy Birthday! - Vintage Pinterest Vibe</title>
   <link rel="stylesheet" href="style.css">
+  <!-- Google Fonts for Vintage/Cursive Typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Special+Elite&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <div class="board-container">
-    <!-- Cursive Badge -->
-    <div class="cursive-badge floating-element">
-      happy birthday
+  <!-- Background Chill Music Toggle -->
+  <audio id="bg-music" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
+  </audio>
+  <div class="music-pill" id="music-btn">🎵 Vibe Music: OFF</div>
+
+  <div class="pinterest-board">
+    
+    <!-- Floating Vintage Tape Header / Badge -->
+    <div class="vintage-header floating-slow">
+      <span class="tape-strip"></span>
+      <h1>Happy Birthday! 🎂✨</h1>
+      <p class="subtitle">Good vibes, great memories & endless laughter</p>
     </div>
 
-    <!-- Cute Bunny Character -->
-    <div class="bunny-sticker floating-element">
-      <svg viewBox="0 0 100 120" width="80">
-        <path d="M 30,50 Q 20,10 35,10 Q 45,10 42,50 Z" fill="#ffffff" stroke="#333" stroke-width="3"/>
-        <path d="M 70,50 Q 80,10 65,10 Q 55,10 58,50 Z" fill="#ffffff" stroke="#333" stroke-width="3"/>
-        <ellipse cx="50" cy="70" rx="30" ry="25" fill="#ffffff" stroke="#333" stroke-width="3"/>
-        <circle cx="40" cy="65" r="2.5" fill="#000"/>
-        <circle cx="60" cy="65" r="2.5" fill="#000"/>
-        <path d="M 46,72 L 54,72 L 50,77 Z" fill="#000"/>
-        <path d="M 25,90 Q 50,78 75,90 L 70,115 L 30,115 Z" fill="#1d4ed8" stroke="#333" stroke-width="3"/>
-      </svg>
-    </div>
-
-    <!-- Central Butterfly -->
-    <div class="butterfly-element floating-element">
-      🦋
-    </div>
-
-    <!-- Top Right Photo Frame (Using Image '1') -->
-    <div class="frame-card frame-top-right interactive-frame">
-      <div class="inner-frame">
-        <img src="1" alt="Photo 1" id="img-1">
-      </div>
-    </div>
-
-    <!-- Middle Left Photo Frame (Using Image '2') -->
-    <div class="frame-card frame-mid-left interactive-frame">
-      <div class="inner-frame">
-        <img src="2" alt="Photo 2" id="img-2">
-      </div>
-    </div>
-
-    <!-- Bottom Right Photo Frame (Using Image '3') -->
-    <div class="frame-card frame-bottom-right interactive-frame">
-      <div class="inner-frame">
-        <img src="3" alt="Photo 3" id="img-3">
-      </div>
-    </div>
-
-    <!-- Wishes Note Box -->
-    <div class="note-box floating-element">
-      <p class="note-text">
-        happiest birthday dear. Hope ur day will be full of fun and cute smiles. I'm tooooo lucky to have u as such a part of my life. Not just a part u mean everything to me. Maybe I can't be best to u but thank u for help me to live my life the way better. I love u as much as I can. byyyy enjoy ur special day.
+    <!-- Friendly Note Card -->
+    <div class="note-polaroid floating-delayed">
+      <div class="pin">📌</div>
+      <p>
+        Wishing you the happiest birthday! Hope your day is filled with good energy, lots of fun, and amazing moments. Cheers to another fantastic year ahead! Keep shining. 🎉🌟
       </p>
     </div>
 
-    <!-- Decorative Stars & Elements -->
-    <div class="blue-flower flower-bottom-left">🪷</div>
-    <div class="blue-flower flower-top-left">🪷</div>
-    <div class="star-element star-1">★</div>
-    <div class="star-element star-2">✦</div>
+    <!-- MAIN PINTEREST ASYMMETRICAL POLAROID GRID -->
+    <div class="polaroid-collage">
+      
+      <!-- Photo 1 -->
+      <div class="polaroid-card p-1 interactive-frame" data-src="1">
+        <div class="tape top-tape"></div>
+        <div class="polaroid-img-box">
+          <img src="1" alt="Memory 1" onerror="this.src='Screenshot 2026-10-27 025700.png'">
+        </div>
+        <div class="polaroid-caption">vibe check ✨</div>
+      </div>
+
+      <!-- Photo 2 -->
+      <div class="polaroid-card p-2 interactive-frame" data-src="2">
+        <div class="tape side-tape"></div>
+        <div class="polaroid-img-box">
+          <img src="2" alt="Memory 2" onerror="this.src='Screenshot 2026-10-27 025942.png'">
+        </div>
+        <div class="polaroid-caption">unforgettable 🎞️</div>
+      </div>
+
+      <!-- Photo 3 -->
+      <div class="polaroid-card p-3 interactive-frame" data-src="3">
+        <div class="tape top-tape"></div>
+        <div class="polaroid-img-box">
+          <img src="3" alt="Memory 3" onerror="this.src='Screenshot 2026-10-27 030027.png'">
+        </div>
+        <div class="polaroid-caption">good times 🌻</div>
+      </div>
+
+      <!-- Photo 4 -->
+      <div class="polaroid-card p-4 interactive-frame" data-src="4">
+        <div class="tape side-tape"></div>
+        <div class="polaroid-img-box">
+          <img src="4" alt="Memory 4" onerror="this.src='Screenshot 2026-10-27 030403.png'">
+        </div>
+        <div class="polaroid-caption">core memories 📷</div>
+      </div>
+
+    </div>
+
+    <!-- EXTRA SCREENSHOTS GALLERY STRIP -->
+    <div class="extra-memories-section">
+      <h3>More Aesthetic Moments 📸</h3>
+      <div class="mini-grid">
+        <div class="mini-card interactive-frame" data-src="Screenshot 2026-10-27 025700.png"><img src="Screenshot 2026-10-27 025700.png" alt="Shot 1"></div>
+        <div class="mini-card interactive-frame" data-src="Screenshot 2026-10-27 025942.png"><img src="Screenshot 2026-10-27 025942.png" alt="Shot 2"></div>
+        <div class="mini-card interactive-frame" data-src="Screenshot 2026-10-27 030027.png"><img src="Screenshot 2026-10-27 030027.png" alt="Shot 3"></div>
+        <div class="mini-card interactive-frame" data-src="Screenshot 2026-10-27 030403.png"><img src="Screenshot 2026-10-27 030403.png" alt="Shot 4"></div>
+        <div class="mini-card interactive-frame" data-src="Screenshot 2026-10-27 030436.png"><img src="Screenshot 2026-10-27 030436.png" alt="Shot 5"></div>
+        <div class="mini-card interactive-frame" data-src="Screenshot 2026-10-27 030537.png"><img src="Screenshot 2026-10-27 030537.png" alt="Shot 6"></div>
+        <div class="mini-card interactive-frame" data-src="Screenshot 2026-10-27 031141.png"><img src="Screenshot 2026-10-27 031141.png" alt="Shot 7"></div>
+        <div class="mini-card interactive-frame" data-src="Screenshot 2026-10-27 031203.png"><img src="Screenshot 2026-10-27 031203.png" alt="Shot 8"></div>
+      </div>
+    </div>
+
+    <!-- Floating Decorative Elements -->
+    <div class="floating-sticker s-1">🦋</div>
+    <div class="floating-sticker s-2">⭐</div>
+    <div class="floating-sticker s-3">🌿</div>
+
+  </div>
+
+  <!-- Fullscreen Modal Preview -->
+  <div class="lightbox-modal" id="lightbox">
+    <span class="close-lightbox">&times;</span>
+    <img id="lightbox-img" src="" alt="Fullscreen View">
   </div>
 
   <script src="script.js"></script>
